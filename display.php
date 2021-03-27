@@ -17,6 +17,13 @@
         <h1 class="bg-warning text-center pt-2 pb-3 px-2 mb-5">All Student's Info</h1>
 
         <table class="bg-dark text-light mx-auto">
+
+            <tr>
+                <th class="bg-warning text-dark">ID</th>
+                <th class="bg-warning text-dark">Fullname</th>
+                <th class="bg-warning text-dark">Semester</th>
+            </tr>
+
             <?php
                 include 'connection.php';
 
@@ -27,14 +34,7 @@
                     echo '<h5 class="bg-danger text-light text-center p-2 mt-5">No Data Found</h5>';
                 } else {
                     while($row = $result->fetch_assoc()) {
-            
             ?>
-
-            <tr>
-                <th class="bg-warning text-dark">ID</th>
-                <th class="bg-warning text-dark">Fullname</th>
-                <th class="bg-warning text-dark">Semester</th>
-            </tr>
 
             <tr>
                 <td><?php echo $row['id'] ?></td>
