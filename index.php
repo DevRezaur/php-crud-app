@@ -10,9 +10,14 @@
                 VALUES('$id', '$fullname', '$semester')";
 
         if (!($conn->query($sql) === TRUE)) {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            header("Location: http://localhost:80/php-crud-app/index.php?msg=$conn->error");
+        } else {
+            header("Location: http://localhost:80/php-crud-app/index.php?msg=Successfully Inserted");
         }
    }
+
+    if(!empty($_GET['msg']))
+        echo '<h5 class="bg-success text-light text-center p-2 mt-5">' . $_GET['msg'] . '</h5>';
 
    $conn->close();
 ?>
@@ -24,7 +29,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/index.css">
+    <style>
+        <?php include 'css/index.css'; ?>
+    </style>
     <title>Insert Users</title>
 </head>
 <body>
@@ -47,8 +54,12 @@
                 <label for="semester" class="form-label">Semester</label>
                 <input type="text" class="form-control" id="semester" name="semester">
             </div>      
-            <button type="submit" name="save" class="btn btn-warning w-100">Submit</button>
+            <button type="submit" name="save" class="btn btn-warning px-5">Submit</button>
         </form>
+
+        <a class="btn-link" href="/php-crud-app/display.php">
+            <button type="button" class="btn btn-danger">View All The Student</button>
+        </a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
