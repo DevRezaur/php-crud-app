@@ -2,12 +2,19 @@
    include 'connection.php';
 
    if(isset($_POST['save'])) {
-       $fullname = $_POST['fullname'];
-       $id = $_POST['id'];
-       $semester = $_POST['semester'];
+        $fullname = $_POST['fullname'];
+        $id = $_POST['id'];
+        $semester = $_POST['semester'];
 
-       echo $fullname . "    " . $id . "    " . $semester;
+        $sql = "INSERT INTO students(id, fullname, semester)
+                VALUES('$id', '$fullname', '$semester')";
+
+        if (!($conn->query($sql) === TRUE)) {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
    }
+
+   $conn->close();
 ?>
 
 <!DOCTYPE html>
